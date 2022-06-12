@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MovieServiceImpl implements MovieService {
@@ -13,12 +14,16 @@ public class MovieServiceImpl implements MovieService {
     private MovieRepository repository;
 
     @Override
-    public void save(Movie movie) {
+    public void save(Movie dto) {
+        Movie movie = new Movie();
+        movie.setGenre(dto.getGenre());
+        movie.setName(dto.getName());
+        movie.setUrlStream(dto.getUrlStream());
         repository.save(movie);
     }
 
     @Override
-    public List<Movie> findByGenre(String genre) {
-        return repository.findByGenre(genre);
+    public List<Movie> findAllByGenre(String genre) {
+        return repository.findAllByGenreContainsIgnoreCase(genre).orElse(null);
     };
 }

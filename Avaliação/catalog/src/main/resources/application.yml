@@ -6,4 +6,20 @@ spring:
   cloud:
     config:
       profile: dev
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+management:
+  info:
+    env:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+info:
+  name: Catalog Service
+  author: Giovani de Paula Silva
+  mail: giovannispaula@gmail.com
 

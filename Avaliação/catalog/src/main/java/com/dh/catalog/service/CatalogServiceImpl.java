@@ -10,7 +10,8 @@ public class CatalogServiceImpl implements CatalogService {
     private MovieFeign movie;
 
     @Override
-    public String getMovie(String genero) {
-        return movie.findMovie(genero);
+    public Object searchByGenre(String genre) {
+
+        return movie.feignSearchByGenre(genre);
     }
 }
